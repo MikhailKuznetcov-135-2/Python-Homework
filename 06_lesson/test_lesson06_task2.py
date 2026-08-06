@@ -54,4 +54,3 @@ def test_session_storage_auth():
         assert url_user_1 != url_user_2, "URL профилей пользователей совпадают"
     finally:
         driver.quit()
-        
