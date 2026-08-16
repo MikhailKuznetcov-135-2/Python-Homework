@@ -24,5 +24,6 @@ def test_slow_calculator(driver):
     for button_text in buttons:
         btn = wait.until(EC.element_to_be_clickable((By.XPATH, f"//span[text()='{button_text}']")))
         btn.click()
-    result_el = wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".screen"), "15"))
+    wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".screen"), "15"))
+    result_el = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".screen")))
     assert result_el.text.strip() == "15"

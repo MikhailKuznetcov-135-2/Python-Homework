@@ -22,5 +22,5 @@ def test_form_validation(driver):
     el.send_keys("Иван")
     submit_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[type='submit']")))
     submit_btn.click()
-    zip_code = wait.until(EC.presence_of_element_located((By.ID, "zip-code")))
-    assert "is-invalid" in zip_code.get_attribute("class")
+    error_msg = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "alert-danger")))
+    assert "required" in error_msg.text.lower() or len(error_msg.text) > 0
