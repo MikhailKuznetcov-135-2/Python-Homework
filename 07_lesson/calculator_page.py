@@ -25,8 +25,9 @@ class CalculatorPage:
         btn = self.wait.until(EC.element_to_be_clickable(locator))
         btn.click()
 
-    def get_result(self) -> str:
-        element = self.wait.until(
-            EC.visibility_of_element_located(self.result_field)
+    def get_result(self, expected: str) -> str:
+        self.wait.until(
+            EC.text_to_be_present_in_element(self.result_field, expected)
         )
-        return element.text.strip()
+        return self.driver.find_element(*self.result_field).text.strip()
+    

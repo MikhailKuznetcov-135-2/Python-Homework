@@ -40,3 +40,4 @@ def test_shop_checkout_total(driver_firefox):
     total = checkout_page.get_total()
     expected_total = 58.29
     assert total == expected_total
+    

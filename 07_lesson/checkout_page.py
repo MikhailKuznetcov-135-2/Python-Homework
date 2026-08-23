@@ -48,3 +48,4 @@ class CheckoutPage:
         text = label_el.text.strip()
         value_str = text.replace("Total: ", "").replace("$", "")
         return float(value_str)
+    
