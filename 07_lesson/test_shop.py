@@ -34,6 +34,7 @@ def test_shop_checkout_total(driver_firefox):
     for product_id in items:
         inventory_page.add_to_cart(product_id)
 
+    cart_page.open_cart()
     cart_page.go_to_checkout()
     checkout_page.fill_checkout_form("Ivan", "Ivanov", "12345")
 

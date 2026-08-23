@@ -11,3 +11,4 @@ class InventoryPage:
         btn.click()
         return self
     
+    

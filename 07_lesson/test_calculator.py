@@ -26,4 +26,3 @@ def test_calculator_addition(driver):
 
     result = page.get_result("15")
     assert result == "15"
-    

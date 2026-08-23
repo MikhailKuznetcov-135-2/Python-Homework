@@ -31,3 +31,4 @@ class CalculatorPage:
         )
         return self.driver.find_element(*self.result_field).text.strip()
     
+    

@@ -49,3 +49,4 @@ class CheckoutPage:
         value_str = text.replace("Total: ", "").replace("$", "")
         return float(value_str)
     
+    

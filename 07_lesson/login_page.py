@@ -30,4 +30,3 @@ class LoginPage:
         pass_el.clear()
         pass_el.send_keys(password)
         login_btn.click()
-        
