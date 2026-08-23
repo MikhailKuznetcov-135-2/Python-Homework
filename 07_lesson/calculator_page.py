@@ -8,22 +8,25 @@ class CalculatorPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, wait_timeout)
         self.delay_input = (By.CSS_SELECTOR, "#delay")
-        self.result_field = (By.CSS_SELECTOR, "#result")
+        self.result_field = (By.CSS_SELECTOR, ".screen")
 
-    def open(self, url: str):
+    def open(self, url: str) -> None:
         self.driver.get(url)
 
-    def set_delay(self, value: int):
-        element = self.wait.until(EC.visibility_of_element_located(self.delay_input))
+    def set_delay(self, value: int) -> None:
+        element = self.wait.until(
+            EC.visibility_of_element_located(self.delay_input)
+        )
         element.clear()
         element.send_keys(str(value))
 
-    def click_button(self, text: str):
-        # На странице кнопки имеют текст внутри, ищем по тексту
-        locator = (By.XPATH, f"//button[normalize-space()='{text}']")
+    def click_button(self, text: str) -> None:
+        locator = (By.XPATH, f"//span[text()='{text}']")
         btn = self.wait.until(EC.element_to_be_clickable(locator))
         btn.click()
 
     def get_result(self) -> str:
-        element = self.wait.until(EC.visibility_of_element_located(self.result_field))
+        element = self.wait.until(
+            EC.visibility_of_element_located(self.result_field)
+        )
         return element.text.strip()

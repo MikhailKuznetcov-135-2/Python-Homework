@@ -6,7 +6,6 @@ from calculator_page import CalculatorPage
 @pytest.fixture
 def driver():
     options = webdriver.ChromeOptions()
-    # Если нужно без GUI: options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(10)
     yield driver
@@ -20,7 +19,6 @@ def test_calculator_addition(driver):
     page.open(url)
     page.set_delay(45)
 
-    # 7 + 8 = 15
     page.click_button("7")
     page.click_button("+")
     page.click_button("8")

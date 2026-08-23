@@ -9,7 +9,6 @@ from checkout_page import CheckoutPage
 @pytest.fixture
 def driver_firefox():
     options = webdriver.FirefoxOptions()
-    # Если нужно без GUI: options.add_argument("-headless")
     driver = webdriver.Firefox(options=options)
     driver.implicitly_wait(10)
     yield driver
@@ -27,13 +26,13 @@ def test_shop_checkout_total(driver_firefox):
     login_page.login("standard_user", "secret_sauce")
 
     items = [
-        "Sauce Labs Backpack",
-        "Sauce Labs Bolt T-Shirt",
-        "Sauce Labs Onesie",
+        "sauce-labs-backpack",
+        "sauce-labs-bolt-t-shirt",
+        "sauce-labs-onesie",
     ]
 
-    for item in items:
-        inventory_page.add_item_by_name(item)
+    for product_id in items:
+        inventory_page.add_to_cart(product_id)
 
     cart_page.go_to_checkout()
     checkout_page.fill_checkout_form("Ivan", "Ivanov", "12345")
