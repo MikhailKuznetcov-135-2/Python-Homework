@@ -10,3 +10,4 @@ class InventoryPage:
         btn = self.driver.find_element(By.ID, btn_id)
         btn.click()
         return self
+    
