@@ -3,7 +3,7 @@ import requests
 from requests.exceptions import RequestException
 
 
-BASE_URL = os.getenv("YOUGILE_BASE_URL", "https://yougile.com/api")
+BASE_URL = os.getenv("YOUGILE_BASE_URL", "https://ru.yougile.com/api-v2")
 TOKEN = os.getenv("YOUGILE_TOKEN")
 
 
@@ -22,7 +22,8 @@ class ProjectsClient:
         }
 
     def create_project(self, name: str, description: str | None = None):
-        url = f"{self.base_url}/api-v2/projects"
+        # Базовый URL уже содержит /api-v2, поэтому дальше просто /projects
+        url = f"{self.base_url}/projects"
         payload = {"name": name}
         if description:
             payload["description"] = description
@@ -42,7 +43,7 @@ class ProjectsClient:
             raise YougileAPIError(f"Request error: {e}") from e
 
     def get_project(self, project_id: str):
-        url = f"{self.base_url}/api-v2/projects/{project_id}"
+        url = f"{self.base_url}/projects/{project_id}"
         try:
             resp = requests.get(
                 url,
@@ -65,7 +66,7 @@ class ProjectsClient:
         name: str | None = None,
         description: str | None = None,
     ):
-        url = f"{self.base_url}/api-v2/projects/{project_id}"
+        url = f"{self.base_url}/projects/{project_id}"
         payload = {}
         if name is not None:
             payload["name"] = name
